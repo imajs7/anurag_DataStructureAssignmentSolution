@@ -6,14 +6,23 @@ import java.util.Stack;
 
 public class Building {
 	
-	int numOfFloor;
-	Stack<Integer> stack = new Stack<Integer>();
-	Queue<Integer> queue = new LinkedList<Integer>();
+	private int numOfFloor;
+	private Stack<Integer> stack = new Stack<Integer>();
+	private Queue<Integer> queue = new LinkedList<Integer>();
 	
 	Building(int floors){
 		this.numOfFloor = floors;
 	}
 	
+	public int getFloors() {
+		return this.numOfFloor;
+	}
+	
+	public void add(int data) {
+		this.queue.add(data);
+	}
+	
+	// main building logic from question
 	public void build() {
 		
 		int floor = this.numOfFloor;
@@ -31,7 +40,7 @@ public class Building {
 					floor--;
 				}
 			} else {
-				stack.push( queue.remove() );
+				sortedPush( queue.remove() );
 			}
 			
 			System.out.println();
@@ -41,6 +50,21 @@ public class Building {
 		
 	}
 	
-	
+	// build a sorted stack of on-hold floor size
+	private void sortedPush(int data) {
+		
+		Stack<Integer> temp = new Stack<Integer>();
+		
+		while( ! this.stack.isEmpty() && this.stack.peek() > data ) {
+			temp.push( this.stack.pop() );
+		}				
+			
+		temp.push(data);
+		
+		while( ! temp.isEmpty() ) {
+			this.stack.push( temp.pop() );
+		}
+		
+	}
 
 }

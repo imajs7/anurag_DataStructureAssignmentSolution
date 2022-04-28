@@ -12,6 +12,7 @@ public class BSTToRightSkewed {
 		this.root = null;
 	}
 	
+	// inserting data in original bst
 	public void insert(int data) {
 		this.root = insert(this.root, data);
 	}
@@ -32,9 +33,16 @@ public class BSTToRightSkewed {
 		return node;
 	}
 	
+	// creating new skewed bst
 	public void createNewTree() {
+		
+		/* creating a queue with inorder traversal of original bst */
 		createQueue();
+		
+		// resetting root
 		this.root = null;
+		
+		// inserting sorted values in new bst
 		while(! this.queue.isEmpty()) {
 			this.root = insert( this.root, this.queue.remove() );
 		}
@@ -53,6 +61,7 @@ public class BSTToRightSkewed {
 		}
 	}
 
+	// printing tree from root node with left and right nodes
 	public void printTree() {
 		printTree(this.root);
 	}

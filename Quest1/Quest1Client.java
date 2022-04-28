@@ -3,6 +3,12 @@ package Quest1;
 import java.util.Scanner;
 
 public class Quest1Client {
+	
+	/*
+	 * Building a skyscraper of distinct floor size
+	 * each day a floor of distinct size is built
+	 * larger floor size must be placed below smaller
+	 */
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -10,14 +16,14 @@ public class Quest1Client {
 		Scanner input = new Scanner(System.in);
 		
 		System.out.print("Enter the total no of floors in the building: ");
-		Building b = new Building( input.nextInt() );
+		Building skyscraper = new Building( input.nextInt() );
 		
-		for(int i = 1; i <= b.numOfFloor; i++) {
+		for(int i = 1; i <= skyscraper.getFloors(); i++) {
 			System.out.printf("Enter the floor size given on day %d: ", i);
-			b.queue.add( input.nextInt() );
+			skyscraper.add( input.nextInt() );
 		}
 		
-		b.build();
+		skyscraper.build();
 		
 		input.close();
 
