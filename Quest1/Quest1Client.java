@@ -12,9 +12,9 @@ public class Quest1Client {
 		System.out.print("Enter the total no of floors in the building: ");
 		Building b = new Building( input.nextInt() );
 		
-		for(int i = 1; i <= b.getFloor(); i++) {
+		for(int i = 1; i <= b.numOfFloor; i++) {
 			System.out.printf("Enter the floor size given on day %d: ", i);
-			b.saveSize(input.nextInt() );;
+			b.queue.add( input.nextInt() );
 		}
 		
 		b.build();

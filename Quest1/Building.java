@@ -1,48 +1,46 @@
 package Quest1;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Building {
 	
-	private static int numOfFloor;
-	
-	private List<Integer> q1;
+	int numOfFloor;
+	Stack<Integer> stack = new Stack<Integer>();
+	Queue<Integer> queue = new LinkedList<Integer>();
 	
 	Building(int floors){
-		Building.numOfFloor = floors;
-		q1 = new ArrayList<Integer>();
-	}
-	
-	public int getFloor() {
-		return Building.numOfFloor;
-	}
-	
-	public void saveSize(int size) {
-		this.q1.add(size);
-	}
-	
-	public int getValue(int index) {
-		return this.q1.get(index);
+		this.numOfFloor = floors;
 	}
 	
 	public void build() {
-		int j;
-		for( int i = 0; i < this.q1.size(); i++ ) {
+		
+		int floor = this.numOfFloor;
+		int day = 1;
+		
+		while(day <= this.numOfFloor) {
 			
-			j = i + 1;
+			System.out.print("Day " + day + " : ");
 			
-			System.out.print("Day " + j + " : ");
-			
-			while( getValue(i) == Building.numOfFloor ) {
-				System.out.print(this.q1.get(i) + " ");
-				Building.numOfFloor--;
-				i=0;
+			if(queue.peek() == floor) {
+				System.out.print( queue.remove() + " " );
+				floor--;
+				while( ! stack.isEmpty() && stack.peek() == floor ) {
+					System.out.print( stack.pop() + " " );
+					floor--;
+				}
+			} else {
+				stack.push( queue.remove() );
 			}
-			i = j - 1;
+			
 			System.out.println();
-
+			day++;
+			
 		}
+		
 	}
+	
+	
 
 }
