@@ -71,24 +71,21 @@ public class BSTToRightSkewed {
 		if(node == null)
 			return;
 		
-		// print self
-		String str = "";
+		// print self		
+		String leftChild, rightChild;
 		
-		if(node.left == null) {
-			str += "X";
-		} else {
-			str += node.left.data;
-		}
+		if(node.left == null)
+			leftChild = "X";
+		else
+			leftChild = node.left.data + "";
 		
-		str += " <- " + node.data + " -> ";
+		if(node.right == null)
+			rightChild = "X";
+		else
+			rightChild = node.right.data + "";
 		
-		if(node.right == null) {
-			str += "X";
-		} else {
-			str += node.right.data;
-		}
-		
-		System.out.println(str);
+		String output = "%s <- %d -> %s";
+		System.out.println( String.format( output, leftChild, node.data, rightChild ) );
 		
 		printTree(node.left);
 		printTree(node.right);
