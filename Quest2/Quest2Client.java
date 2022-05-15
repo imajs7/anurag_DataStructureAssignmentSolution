@@ -19,8 +19,8 @@ public class Quest2Client {
 		System.out.println("Original Tree");
 		tree.printTree();
 		
-		//create a new skewed bst
-		tree.createNewTree();
+		//in place skewed tree
+		tree.rotateBSTToSkewed();
 		
 		//print skewed tree
 		System.out.println("Skewed Tree");

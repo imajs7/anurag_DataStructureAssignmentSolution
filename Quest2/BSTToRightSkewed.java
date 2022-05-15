@@ -1,17 +1,16 @@
 package Quest2;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class BSTToRightSkewed {
 	
 	private Node root;
-	private Queue<Integer> queue = new LinkedList<Integer>();
+	
+	Node headNode = null;
+	Node prevNode = null;
 	
 	BSTToRightSkewed(){
 		this.root = null;
 	}
-	
+
 	// inserting data in original bst
 	public void insert(int data) {
 		this.root = insert(this.root, data);
@@ -33,32 +32,36 @@ public class BSTToRightSkewed {
 		return node;
 	}
 	
-	// creating new skewed bst
-	public void createNewTree() {
-		
-		/* creating a queue with inorder traversal of original bst */
-		createQueue();
-		
-		// resetting root
-		this.root = null;
-		
-		// inserting sorted values in new bst
-		while(! this.queue.isEmpty()) {
-			this.root = insert( this.root, this.queue.remove() );
-		}
+	public void rotateBSTToSkewed() {
+		rotateBSTToSkewed(this.root);
 	}
 	
-	public void createQueue() {
-		createQueue(this.root);
-	}
+	private void rotateBSTToSkewed(Node node){
 	
-	// create queue using inorder traversal
-	private void createQueue(Node node) {
-		if(node != null) {
-			createQueue(node.left);
-			this.queue.add(node.data);
-			createQueue(node.right);
+		// base case
+		if (node == null)
+			return;
+
+		// check till we reach leaf node
+		rotateBSTToSkewed(node.left);
+
+		// pick new root node
+		if(headNode == null) {
+			headNode = node;
+			prevNode = node;
+			
+		// right rotate previous node
+		} else {
+			prevNode.right = node;
+			node.left = null;
+			prevNode = node;
 		}
+
+		// perform rotation for right sub tree
+		rotateBSTToSkewed(node.right);
+		
+		// update root node of the tree
+		this.root = headNode;
 	}
 
 	// printing tree from root node with left and right nodes
