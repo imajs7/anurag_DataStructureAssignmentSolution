@@ -8,7 +8,7 @@ public class Quest2Client {
 		BSTToRightSkewed tree = new BSTToRightSkewed();
 		
 		// values to create a binary search tree
-		int[] input = {10, 32, 70, 65, 78, 30, 50, 31, 80, 55};
+		int[] input = {50, 30, 10, 60, 55};
 		
 		//creating a bst
 		for(int i = 0; i < input.length; i++) {

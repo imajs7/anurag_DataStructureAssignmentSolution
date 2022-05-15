@@ -34,6 +34,8 @@ public class BSTToRightSkewed {
 	
 	public void rotateBSTToSkewed() {
 		rotateBSTToSkewed(this.root);
+		// update root node of the tree
+		this.root = rootNode;
 	}
 	
 	private void rotateBSTToSkewed(Node node){
@@ -60,8 +62,6 @@ public class BSTToRightSkewed {
 		// perform rotation for right sub tree
 		rotateBSTToSkewed(node.right);
 		
-		// update root node of the tree
-		this.root = rootNode;
 	}
 
 	// printing tree from root node with left and right nodes
