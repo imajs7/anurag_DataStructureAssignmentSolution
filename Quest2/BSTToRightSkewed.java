@@ -4,7 +4,7 @@ public class BSTToRightSkewed {
 	
 	private Node root;
 	
-	Node headNode = null;
+	Node rootNode = null;
 	Node prevNode = null;
 	
 	BSTToRightSkewed(){
@@ -46,8 +46,8 @@ public class BSTToRightSkewed {
 		rotateBSTToSkewed(node.left);
 
 		// pick new root node
-		if(headNode == null) {
-			headNode = node;
+		if(rootNode == null) {
+			rootNode = node;
 			prevNode = node;
 			
 		// right rotate previous node
@@ -61,7 +61,7 @@ public class BSTToRightSkewed {
 		rotateBSTToSkewed(node.right);
 		
 		// update root node of the tree
-		this.root = headNode;
+		this.root = rootNode;
 	}
 
 	// printing tree from root node with left and right nodes
